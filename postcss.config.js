@@ -1,13 +1,16 @@
 export default {
   plugins: {
+    '@fullhuman/postcss-purgecss': {
+      content: ['./src/**/*.tsx'],
+    },
     tailwindcss: {},
     autoprefixer: {},
-    "postcss-custom-properties": {},
-    "postcss-preset-env": {
+    'postcss-custom-properties': {},
+    'postcss-preset-env': {
       autoprefixer: false,
       features: {
-        "nesting-rules": true,
+        'nesting-rules': true,
       },
     },
   },
-};
+}
