@@ -1,6 +1,5 @@
 {
-  "**/*": "prettier --write --ignore-unknown",
-  "**/*.css": ["stylelint"],
-  "**/*.html": ["stylelint"],
-  "**/*.tsx": ["stylelint"]
+  "**/*": ["prettier --write"],
+  "src/**/*.(tsx|ts)": ["eslint --fix", "stylelint"],
+  "src/**/*.css": ["stylelint"]
 }
