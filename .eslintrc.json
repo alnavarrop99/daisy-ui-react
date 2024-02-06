@@ -7,8 +7,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:storybook/recommended"
+    "plugin:react/recommended",
+    "prettier"
   ],
   "ignorePatterns": ["dist", ".eslintrc.cjs"],
   "parser": "@typescript-eslint/parser",
@@ -20,5 +20,36 @@
         "allowConstantExport": true
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "extends": [
+        "plugin:jsx-a11y/recommended",
+        "plugin:compat/recommended",
+        "plugin:tailwindcss/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:@tanstack/eslint-plugin-query/recommended"
+      ]
+    },
+    {
+      "files": ["**/*.stories.ts"],
+      "extends": ["plugin:storybook/recommended"]
+    },
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": [
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended",
+        "plugin:jest/recommended"
+      ]
+    },
+    {
+      "files": ["**/*(!stories).ts"],
+      "extends": ["plugin:sonarjs/recommended"]
+    }
+  ]
 }
