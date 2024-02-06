@@ -65,6 +65,7 @@
     "lint-staged": "^15.2.0",
     "msw": "^2.1.6",
     "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
     "postcss-custom-properties": "^13.3.2",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^9.3.0",
