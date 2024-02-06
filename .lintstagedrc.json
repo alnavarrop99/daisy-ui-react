@@ -1,0 +1,6 @@
+{
+  "**/*": "prettier --write --ignore-unknown",
+  "**/*.css": "stylelint",
+  "**/*.html": "stylelint",
+  "**/*.tsx": "stylelint"
+}
