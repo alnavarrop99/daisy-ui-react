@@ -9,3 +9,4 @@ husky
 **/*.html
 
 pnpm-lock.yaml
+.gitignore
