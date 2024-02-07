@@ -33,10 +33,6 @@
       ]
     },
     {
-      "files": ["**/*.stories.ts"],
-      "extends": ["plugin:storybook/recommended"]
-    },
-    {
       "files": [
         "**/__tests__/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test).[jt]s?(x)"
@@ -44,7 +40,7 @@
       "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
     },
     {
-      "files": ["**/*(!stories).ts"],
+      "files": ["**/*.ts"],
       "extends": ["plugin:sonarjs/recommended"]
     }
   ]
