@@ -33,14 +33,16 @@
       ]
     },
     {
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
+      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
       "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
     },
     {
-      "files": ["**/*.ts"],
+      "files": ["**/?(*.)+(stories).[jt]s?(x)"],
+      "extends": ["eslint-plugin-storybook"]
+    },
+
+    {
+      "files": ["**/*(?!.(stories|test|spec)).[jt]s?(x)"],
       "extends": ["plugin:sonarjs/recommended"]
     }
   ]
