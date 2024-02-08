@@ -38,11 +38,10 @@
     },
     {
       "files": ["**/?(*.)+(stories).[jt]s?(x)"],
-      "extends": ["eslint-plugin-storybook"]
+      "extends": ["plugin:storybook/recommended"]
     },
-
     {
-      "files": ["**/*(?!.(stories|test|spec)).[jt]s?(x)"],
+      "files": ["**/*(?!.(d|stories|test|spec)).[jt]s?(x)"],
       "extends": ["plugin:sonarjs/recommended"]
     }
   ]
