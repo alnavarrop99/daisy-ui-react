@@ -2,6 +2,6 @@
   "**/*": ["prettier --write"],
   "src/**/*.ts": ["eslint --fix"],
   "src/**/*.(test|spec).ts": ["vitest related --run"],
-  "src/**/*.tsx": ["eslint --fix", "stylelint"],
+  "src/**/*.tsx": ["eslint --fix"],
   "src/**/*.css": ["stylelint"]
 }

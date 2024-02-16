@@ -7,7 +7,6 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
     "prettier"
   ],
   "ignorePatterns": ["dist", ".eslintrc.cjs"],
@@ -29,8 +28,13 @@
         "plugin:compat/recommended",
         "plugin:tailwindcss/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:@tanstack/eslint-plugin-query/recommended"
-      ]
+        "plugin:@tanstack/eslint-plugin-query/recommended",
+        "plugin:react/recommended"
+      ],
+      "plugins": ["react"],
+      "rules": {
+        "react/react-in-jsx-scope": "off"
+      }
     },
     {
       "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
