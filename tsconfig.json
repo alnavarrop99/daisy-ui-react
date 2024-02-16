@@ -24,9 +24,11 @@
 
     "paths": {
       "@component/*": ["./src/component/*"],
-      "@layout/*": ["./src/layout/*"]
+      "@layout/*": ["./src/layout/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "./test.setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
