@@ -12,6 +12,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:ui": "vitest --ui",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
