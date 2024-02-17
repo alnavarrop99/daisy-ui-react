@@ -27,3 +27,4 @@ dist-ssr
 *.sw?
 
 .husky/_/*
+pnpm-lock.yaml
