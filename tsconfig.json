@@ -26,7 +26,8 @@
       "@component/*": ["./src/component/*"],
       "@layout/*": ["./src/layout/*"],
       "@pages/*": ["./src/pages/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@": ["./src/helper.tsx"]
     }
   },
   "include": ["src", "./test.setup.ts"],
