@@ -11,10 +11,28 @@
 // Import Routes
 
 import { Route as rootRoute } from './pages/__root'
+import { Route as UserImport } from './pages/user'
+import { Route as CreditImport } from './pages/credit'
+import { Route as ClientImport } from './pages/client'
 import { Route as R404Import } from './pages/__404'
 import { Route as IndexImport } from './pages/index'
 
 // Create/Update Routes
+
+const UserRoute = UserImport.update({
+  path: '/user',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CreditRoute = CreditImport.update({
+  path: '/credit',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ClientRoute = ClientImport.update({
+  path: '/client',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const R404Route = R404Import.update({
   id: '/__404',
@@ -38,11 +56,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R404Import
       parentRoute: typeof rootRoute
     }
+    '/client': {
+      preLoaderRoute: typeof ClientImport
+      parentRoute: typeof rootRoute
+    }
+    '/credit': {
+      preLoaderRoute: typeof CreditImport
+      parentRoute: typeof rootRoute
+    }
+    '/user': {
+      preLoaderRoute: typeof UserImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, R404Route])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  R404Route,
+  ClientRoute,
+  CreditRoute,
+  UserRoute,
+])
 
 /* prettier-ignore-end */
