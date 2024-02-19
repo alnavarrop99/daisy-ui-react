@@ -51,7 +51,12 @@ const clcs = (
   return styles.join(' ')
 }
 
+const RouteStorie = ({ Comp }: { Comp: () => JSX.Element }) => <Comp />
+const createRouteStory = ({ Comp }: { Comp: () => JSX.Element }) =>
+  customRenderStorie(() => <RouteStorie {...{ Comp }} />)
+
 export const $ = {
+  createRouteStory,
   customRenderStorie,
   customRenderTest,
   clcs,
