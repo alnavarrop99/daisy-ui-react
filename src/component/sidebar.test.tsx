@@ -1,5 +1,5 @@
 import { screen, waitFor } from '@testing-library/react'
-import SideBar from './sidebar'
+import SideBar from '@component/sidebar'
 import { SideBarList } from '@pages/__root'
 import { $ } from '@'
 

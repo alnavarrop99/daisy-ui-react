@@ -1,37 +1,37 @@
 import { $ } from '@'
-import styles from './__root.module.css'
+import lcss from './__root.module.css'
 import SideBar from '@component/sidebar'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
+import React from 'react'
+import { Header, THeaderIcons, THeaderNavs } from '@component/header'
+import Footer from '@component/footer'
 
 export const Route = createRootRoute({
   component: Main,
 })
 
-export function Main() {
+export function Main({ children }: React.PropsWithChildren) {
   return (
     <section
       aria-label="main page"
-      className={$.clcs([
-        $.clco({
-          'm-auto grid w-10/12': true,
-        }),
-        styles?.['grid-3x2'],
-      ])}
+      className={$.clcs(['m-auto grid', lcss?.['grid-3x2']])}
     >
       <nav
-        className="gap-rows-3 row-span-full min-h-screen border px-16"
+        className={$.clcs([
+          'lg:min-dvh-screen lg:gap-rows-3 hidden border py-8 text-center lg:row-span-full lg:block',
+        ])}
         aria-label="sidebar"
       >
         <SideBar list={SideBarList} />
       </nav>
-      <header aria-label="header bar" className="border py-4">
-        header
+      <header aria-label="header content" className="border p-4">
+        <Header {...{ icons, navs }} />
       </header>
-      <main aria-label="main route content" className="border">
-        <Outlet />
+      <main aria-label="route content" className="border p-4">
+        {children ?? <Outlet />}
       </main>
-      <footer aria-label="footer bar" className="border py-4">
-        footer
+      <footer aria-label="footer content" className="border py-4">
+        <Footer />
       </footer>
     </section>
   )
@@ -43,3 +43,49 @@ export const SideBarList = {
   credit: 'credit',
   user: 'user',
 }
+
+export const icons: Record<string, THeaderIcons> = {
+  search: {
+    Comp: () => (
+      <img
+        className="rounded-full"
+        alt="icon-item"
+        src={'https://placehold.co/30x30'}
+      />
+    ),
+  },
+  notifications: {
+    Comp: () => (
+      <img
+        className="rounded-full"
+        alt="icon-item"
+        src={'https://placehold.co/30x30'}
+      />
+    ),
+  },
+  fullscreen: {
+    Comp: () => (
+      <img
+        className="rounded-full"
+        alt="icon-item"
+        src={'https://placehold.co/30x30'}
+      />
+    ),
+  },
+  configurations: {
+    Comp: () => (
+      <img
+        className="rounded-full"
+        alt="icon-item"
+        src={'https://placehold.co/30x30'}
+      />
+    ),
+  },
+} as const
+
+export const navs: { [k in keyof typeof SideBarList]: THeaderNavs } = {
+  user: { text: 'user' },
+  client: { text: 'client' },
+  credit: { text: 'credit' },
+  home: { text: 'home' },
+} as const
