@@ -37,7 +37,23 @@ const customRenderStorie = (component: () => JSX.Element) =>
 const customRenderTest = (component: () => JSX.Element) =>
   render(customRenderRoute(createCustomRoute(component)))
 
+const clco = (styles: Record<string, boolean>): string => {
+  const list = Object.entries(styles)
+  return list
+    .filter(([, val]) => val)
+    .map(([className]) => className)
+    .join(' ')
+}
+
+const clcs = (
+  styles: (string | CSSModuleClasses | Record<string, boolean>)[]
+): string => {
+  return styles.join(' ')
+}
+
 export const $ = {
   customRenderStorie,
   customRenderTest,
+  clcs,
+  clco,
 }
