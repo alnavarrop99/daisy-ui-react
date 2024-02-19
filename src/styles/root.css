@@ -1,0 +1,7 @@
+:root {
+  --custom-y-screen: 100dvh;
+  --custom-text-shadow-off-x: theme(spacing.1);
+  --custom-text-shadow-off-y: theme(spacing.1);
+  --custom-text-shadow-blur: theme(spacing.1);
+  --custom-text-shadow-color: theme(colors.black);
+}
