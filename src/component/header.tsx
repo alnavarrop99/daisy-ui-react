@@ -1,18 +1,14 @@
 import React, { useMemo } from 'react'
 
-export interface THeaderIcons {
-  Comp: () => JSX.Element
-  action?: React.MouseEventHandler<HTMLElement>
-}
-
-export interface THeaderNavs {
-  text: string
-  action?: React.MouseEventHandler<HTMLElement>
-}
-
 export interface THeaderProp {
-  icons?: Record<string, THeaderIcons>
-  navs?: Record<string, THeaderNavs>
+  icons?: NHeaderProp.icons
+  navs?: NHeaderProp.navs
+}
+
+/* eslint-disable */
+export module NHeaderProp {
+  export type icons = Record<string, THeaderIcons>
+  export type navs = Record<string, THeaderNavs>
 }
 
 export const Header = ({ icons, navs }: THeaderProp) => {
@@ -62,3 +58,13 @@ export const Header = ({ icons, navs }: THeaderProp) => {
 }
 
 export default Header
+
+interface THeaderIcons {
+  Comp: () => JSX.Element
+  action?: React.MouseEventHandler<HTMLElement>
+}
+
+interface THeaderNavs {
+  text: string
+  action?: React.MouseEventHandler<HTMLElement>
+}
