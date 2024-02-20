@@ -1,14 +1,14 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Main as _Main } from '@pages/__root'
-import { Home } from '@pages/index'
-import { User } from '@pages/user'
-import { Client } from '@pages/client'
-import { Credit } from '@pages/credit'
+import { Layout as _Layout } from '@pages/_layout'
+import { Home } from '@pages/_layout/index'
+import { User } from '@pages/_layout/user'
+import { Client } from '@pages/_layout/client'
+import { Credit } from '@pages/_layout/credit'
 import { $ } from '@'
 
 const Root = ({ children }: React.PropsWithChildren) =>
-  $.customRenderStorie(() => <_Main>{children}</_Main>)
+  $.customRenderStorie(() => <_Layout>{children}</_Layout>)
 
 const meta: Meta = {
   title: '@pages/nav',

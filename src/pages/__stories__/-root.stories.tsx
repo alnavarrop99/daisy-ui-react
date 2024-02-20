@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Main as Root } from '@pages/__root'
+import { Layout as _Layout } from '@pages/_layout'
 import { _404 as NotFound } from '@pages/__404'
+import { Login } from '@pages/login'
 import { $ } from '@'
 
 const meta: Meta = {
@@ -15,7 +16,7 @@ export const __root: TStory = {
   name: '/',
   args: {
     Comp: () => (
-      <Root>
+      <_Layout>
         <div className="space-y-8">
           {Array.from({ length: 10 }).map((_, i) => (
             <p key={i}>
@@ -34,7 +35,7 @@ export const __root: TStory = {
             </p>
           ))}
         </div>
-      </Root>
+      </_Layout>
     ),
   },
 }
@@ -43,5 +44,12 @@ export const __404: TStory = {
   name: '404',
   args: {
     Comp: () => <NotFound />,
+  },
+}
+
+export const __login: TStory = {
+  name: '/login',
+  args: {
+    Comp: () => <Login />,
   },
 }
