@@ -7,6 +7,7 @@ export const alias: Record<string, string> = {
   '@layout': resolve(root, 'layout'),
   '@pages': resolve(root, 'pages'),
   '@assets': resolve(root, 'assets'),
+  '@gcss': resolve(root, resolve('styles'), 'gcss.module.css'),
   '@': resolve(root, 'helper.tsx'),
 }
 

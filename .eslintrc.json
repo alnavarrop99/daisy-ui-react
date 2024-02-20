@@ -38,7 +38,14 @@
     },
     {
       "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
-      "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+      "extends": [
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended"
+      ],
+      "rules": {
+        "testing-library/no-container": "off",
+        "testing-library/no-node-access": "off"
+      }
     },
     {
       "files": ["**/?(*.)+(stories).[jt]s?(x)"],

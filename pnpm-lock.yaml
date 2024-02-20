@@ -163,6 +163,9 @@ devDependencies:
   postcss-custom-properties:
     specifier: ^13.3.2
     version: 13.3.2(postcss@8.4.33)
+  postcss-import:
+    specifier: ^15.1.0
+    version: 15.1.0(postcss@8.4.33)
   postcss-preset-env:
     specifier: ^9.3.0
     version: 9.3.0(postcss@8.4.33)

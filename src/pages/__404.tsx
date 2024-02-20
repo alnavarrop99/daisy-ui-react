@@ -7,5 +7,12 @@ export const Route = new NotFoundRoute({
 })
 
 export function _404() {
-  return <>Not Found</>
+  return (
+    <section
+      aria-label="Not Found"
+      className="grid min-h-screen place-content-center place-items-center"
+    >
+      <p>Not Found</p>
+    </section>
+  )
 }

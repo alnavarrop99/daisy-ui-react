@@ -1,6 +1,6 @@
 import { screen, waitFor } from '@testing-library/react'
-import SideBar from './sidebar'
-import { SideBarList } from '@pages/__root'
+import SideBar from '@component/sidebar'
+import { SideBarList } from '@pages/_layout'
 import { $ } from '@'
 
 test('should be list in the DOM', async () => {

@@ -1,0 +1,14 @@
+@layer utilities {
+  .min-dvh-screen {
+    min-height: var(--custom-y-screen);
+  }
+
+  .text-shadow {
+    text-shadow: var(--custom-text-shadow-off-x) var(--custom-text-shadow-off-y)
+      var(--custom-text-shadow-blur) var(--custom-text-shadow-color);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

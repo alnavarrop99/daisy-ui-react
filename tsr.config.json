@@ -1,3 +1,4 @@
 {
-  "routesDirectory": "./src/pages"
+  "routesDirectory": "./src/pages",
+  "routeFileIgnorePrefix": "-"
 }
