@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { CardInfo, TCardInfoProp } from '@component/card-info'
+import { CardInfo, TCardInfoProp } from './card-info'
 
 const meta: Meta = {
-  title: '@component/card-info',
+  title: '@component/card/card-info',
   component: CardInfo,
 }
 export default meta
