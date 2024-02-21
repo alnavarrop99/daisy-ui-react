@@ -14,6 +14,7 @@ import { Route as rootRoute } from './pages/__root'
 import { Route as LoginImport } from './pages/login'
 import { Route as LayoutImport } from './pages/_layout'
 import { Route as R404Import } from './pages/__404'
+import { Route as IndexImport } from './pages/index'
 import { Route as LayoutIndexImport } from './pages/_layout/index'
 import { Route as LayoutUserImport } from './pages/_layout/user'
 import { Route as LayoutCreditImport } from './pages/_layout/credit'
@@ -33,6 +34,11 @@ const LayoutRoute = LayoutImport.update({
 
 const R404Route = R404Import.update({
   id: '/__404',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const IndexRoute = IndexImport.update({
+  path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +66,10 @@ const LayoutClientRoute = LayoutClientImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
     '/__404': {
       preLoaderRoute: typeof R404Import
       parentRoute: typeof rootRoute
@@ -94,6 +104,7 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren([
+  IndexRoute,
   R404Route,
   LayoutRoute.addChildren([
     LayoutClientRoute,
