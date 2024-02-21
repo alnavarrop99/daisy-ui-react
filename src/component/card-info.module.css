@@ -1,0 +1,14 @@
+.animation {
+  &:hover::after {
+    animation: 500ms delay;
+  }
+}
+
+@keyframes delay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
