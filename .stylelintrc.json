@@ -1,28 +1,8 @@
 {
+  "ignoreFiles": ["**/*.[jt]s?(x)", ".(svg|png|jpeg|webp)"],
   "extends": ["stylelint-config-standard", "stylelint-config-clean-order"],
-  "plugins": ["stylelint-no-unsupported-browser-features"],
   "rules": {
-    "at-rule-no-unknown": [
-      true,
-      {
-        "ignoreAtRules": [
-          "tailwind",
-          "apply",
-          "variants",
-          "responsive",
-          "screen",
-          "import"
-        ]
-      }
-    ],
-    "declaration-block-trailing-semicolon": null,
-    "no-descending-specificity": null,
-    "media-query-no-invalid": null,
-    "plugin/no-unsupported-browser-features": [
-      true,
-      {
-        "severity": "warning"
-      }
-    ]
+    "function-no-unknown": [true, { "ignoreFunctions": ["theme"] }],
+    "media-query-no-invalid": null
   }
 }
