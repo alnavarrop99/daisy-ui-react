@@ -10,7 +10,7 @@ type TStory = StoryObj<typeof CardInfo>
 
 const args: TCardInfoProp = {
   info: 150,
-  label: 'Total Clients',
+  label: 'Lorem ipsum dolor',
   'url-img': 'https://placehold.co/150x150?text=Hello+World',
 }
 
