@@ -1,0 +1,7 @@
+/* stylelint-disabled */
+@media screen and (screen(lg)) {
+  .grid-3x2 {
+    grid-template-columns: minmax(10%, 20%) auto;
+    grid-template-rows: min-content 1fr min-content;
+  }
+}

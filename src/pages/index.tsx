@@ -1,9 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-  component: Home,
+  component: Root,
 })
 
-export function Home() {
-  return <div>Hello Home</div>
+export function Root({ children }: React.PropsWithChildren) {
+  return <div className="container m-auto">{children ?? <Outlet />}</div>
 }

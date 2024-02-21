@@ -10,9 +10,8 @@
         [
           "postcss-preset-env",
           {
-            "autoprefixer": false,
             "features": {
-              "nesting-rules": true
+              "nesting-rules": false
             }
           }
         ]

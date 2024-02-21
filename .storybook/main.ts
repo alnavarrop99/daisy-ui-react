@@ -9,14 +9,6 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
   ],
-  viteFinal(config) {
-    return {
-      ...config,
-      css: {
-        postcss: './.storybook/postcssrs.json',
-      },
-    }
-  },
   framework: {
     name: '@storybook/react-vite',
     options: {},

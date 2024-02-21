@@ -11,26 +11,24 @@
 // Import Routes
 
 import { Route as rootRoute } from './pages/__root'
-import { Route as UserImport } from './pages/user'
-import { Route as CreditImport } from './pages/credit'
-import { Route as ClientImport } from './pages/client'
+import { Route as LoginImport } from './pages/login'
+import { Route as LayoutImport } from './pages/_layout'
 import { Route as R404Import } from './pages/__404'
 import { Route as IndexImport } from './pages/index'
+import { Route as LayoutIndexImport } from './pages/_layout/index'
+import { Route as LayoutUserImport } from './pages/_layout/user'
+import { Route as LayoutCreditImport } from './pages/_layout/credit'
+import { Route as LayoutClientImport } from './pages/_layout/client'
 
 // Create/Update Routes
 
-const UserRoute = UserImport.update({
-  path: '/user',
+const LoginRoute = LoginImport.update({
+  path: '/login',
   getParentRoute: () => rootRoute,
 } as any)
 
-const CreditRoute = CreditImport.update({
-  path: '/credit',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ClientRoute = ClientImport.update({
-  path: '/client',
+const LayoutRoute = LayoutImport.update({
+  id: '/_layout',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -42,6 +40,26 @@ const R404Route = R404Import.update({
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const LayoutIndexRoute = LayoutIndexImport.update({
+  path: '/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutUserRoute = LayoutUserImport.update({
+  path: '/user',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutCreditRoute = LayoutCreditImport.update({
+  path: '/credit',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutClientRoute = LayoutClientImport.update({
+  path: '/client',
+  getParentRoute: () => LayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -56,17 +74,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R404Import
       parentRoute: typeof rootRoute
     }
-    '/client': {
-      preLoaderRoute: typeof ClientImport
+    '/_layout': {
+      preLoaderRoute: typeof LayoutImport
       parentRoute: typeof rootRoute
     }
-    '/credit': {
-      preLoaderRoute: typeof CreditImport
+    '/login': {
+      preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
-    '/user': {
-      preLoaderRoute: typeof UserImport
-      parentRoute: typeof rootRoute
+    '/_layout/client': {
+      preLoaderRoute: typeof LayoutClientImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/credit': {
+      preLoaderRoute: typeof LayoutCreditImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/user': {
+      preLoaderRoute: typeof LayoutUserImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/': {
+      preLoaderRoute: typeof LayoutIndexImport
+      parentRoute: typeof LayoutImport
     }
   }
 }
@@ -76,9 +106,13 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   R404Route,
-  ClientRoute,
-  CreditRoute,
-  UserRoute,
+  LayoutRoute.addChildren([
+    LayoutClientRoute,
+    LayoutCreditRoute,
+    LayoutUserRoute,
+    LayoutIndexRoute,
+  ]),
+  LoginRoute,
 ])
 
 /* prettier-ignore-end */
