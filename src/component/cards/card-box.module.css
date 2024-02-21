@@ -1,4 +1,4 @@
 .grid-2x2 {
   grid-template-columns: auto max-content;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
