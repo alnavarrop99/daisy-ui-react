@@ -2,12 +2,16 @@ import { $ } from '@'
 import { Link } from '@tanstack/react-router'
 import React, { useMemo } from 'react'
 
+interface THeaderProps {
+  list: Record<string, string>
+}
+
 /* eslint-disable-next-line */
 export function Header({
   children,
   list: _list,
   ...props
-}: React.PropsWithChildren<{ list: Record<string, string> }> &
+}: React.PropsWithChildren<THeaderProps> &
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
   const list = useMemo(() => Object.entries(_list), [_list])
   return (
@@ -20,13 +24,15 @@ export function Header({
       ])}
     >
       <ul
-        aria-label="list label items"
+        aria-label="list label"
         className="flex items-center gap-4 overflow-x-auto [&>*]:cursor-pointer"
       >
-        {React.Children?.toArray(children)?.at(0)}
+        <li aria-label="labelitem">
+          {React.Children?.toArray(children)?.at(0)}
+        </li>
         {list.map(([label, url]) => (
-          <li className="group" aria-label="label item" key={label}>
-            <Link to={url} className="group capitalize no-underline">
+          <li className="group" aria-label="labelitem" key={label}>
+            <Link to={url} className="capitalize no-underline">
               {({ isActive }) => (
                 <span
                   className={$.clcs([
@@ -46,9 +52,15 @@ export function Header({
 
       <ul
         className="flex gap-4 overflow-x-auto [&>*]:cursor-pointer"
-        aria-label="list icons items"
+        aria-label="list icons"
       >
-        {React.Children?.toArray(children)?.slice(1)}
+        {React.Children?.toArray(children)
+          ?.slice(1)
+          .map((item, i) => (
+            <li aria-label="item icon" key={i}>
+              {item}
+            </li>
+          ))}
       </ul>
     </header>
   )
@@ -57,28 +69,22 @@ export function Header({
 /* eslint-disable-next-line */
 Header.Icon = function ({
   children,
-  onClick,
   ...props
-}: React.PropsWithChildren<{
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
-}> &
+}: React.PropsWithChildren &
   React.DetailedHTMLProps<
-    React.LiHTMLAttributes<HTMLLIElement>,
-    HTMLLIElement
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
   >) {
   return (
-    <li
+    <button
       {...props}
       className={$.clcs([
         'inline-grid place-content-center place-items-center hover:bg-black',
         props.className ?? '',
       ])}
-      aria-label={'icon item'}
     >
-      <button {...{ onClick }} className={$.clcs(['rounded-inherit'])}>
-        {children}
-      </button>
-    </li>
+      {children}
+    </button>
   )
 }
 

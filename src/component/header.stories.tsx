@@ -50,7 +50,7 @@ function Icons({ list }: TNavigationProps) {
 const meta: Meta = {
   title: '@component/header',
   component: $.createRouteStory,
-  decorators: [(Story) => $.customRenderStorie(() => <Story />)],
+  decorators: [(Story) => $.customRenderStorie(Story)],
 }
 export default meta
 
@@ -61,7 +61,7 @@ const args: TNavigationProps = {
 type TStory = StoryObj<TNavigationProps>
 
 export const _Label: TStory = {
-  name: 'Navigation Items',
+  name: 'Navigation',
   args,
   render: Navigation,
 }
