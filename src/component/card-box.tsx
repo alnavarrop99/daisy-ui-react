@@ -19,12 +19,13 @@ export const CardBox = ({
   children,
   favorite,
   ...props
-}: React.PropsWithChildren<
+}: React.PropsWithChildren<{
+  favorite?: boolean | { value: boolean; position: 'right' | 'left' }
+}> &
   React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDetailsElement>,
     HTMLDetailsElement
-  > & { favorite?: boolean | { value: boolean; position: 'right' | 'left' } }
->) => {
+  >) => {
   const style = useMemo(() => {
     const child = React.Children.count(children)
     return { gridTemplateRows: `repeat(${child - 1}, minmax(0, 1fr))` }
@@ -142,12 +143,11 @@ CardBox.Info = function ({
 CardBox.Range = function ({
   children,
   ...props
-}: React.PropsWithChildren<
+}: React.PropsWithChildren &
   React.DetailedHTMLProps<
     React.MeterHTMLAttributes<HTMLMeterElement>,
     HTMLMeterElement
-  >
->) {
+  >) {
   return (
     <div
       aria-label="card range"
