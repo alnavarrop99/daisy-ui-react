@@ -51,6 +51,17 @@ const clcs = (
   return styles.join(' ')
 }
 
+// not work for talwindcss proccess
+const clci = (styles?: string): string => {
+  return (
+    styles
+      ?.split(' ')
+      .map((w) => '!' + w)
+      .join(' ') ?? ''
+  )
+  // return styles?.replace(/\w+/g, "!$&") ?? ""; -> perfomance
+}
+
 const RouteStorie = ({ Comp }: { Comp: () => JSX.Element }) => <Comp />
 const createRouteStory = ({ Comp }: { Comp: () => JSX.Element }) =>
   customRenderStorie(() => <RouteStorie {...{ Comp }} />)
@@ -61,4 +72,5 @@ export const $ = {
   customRenderTest,
   clcs,
   clco,
+  clci,
 }
