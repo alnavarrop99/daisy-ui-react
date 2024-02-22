@@ -1,3 +1,7 @@
+.grid-fx2 {
+  grid-template-columns: auto max-content;
+}
+
 .animation {
   &:hover::after {
     animation: 500ms delay;
@@ -11,4 +15,8 @@
   to {
     opacity: 1;
   }
+}
+
+.rounded-inherit {
+  border-radius: inherit;
 }

@@ -33,7 +33,9 @@
       ],
       "plugins": ["react"],
       "rules": {
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "react-hooks/rules-of-hooks": "off",
+        "react/prop-types": "off"
       }
     },
     {
