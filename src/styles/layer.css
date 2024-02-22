@@ -15,4 +15,12 @@
   .rounded-inherit {
     border-radius: inherit;
   }
+
+  .display-inherit {
+    display: inherit;
+  }
+
+  .direction-inherit {
+    flex-direction: inherit;
+  }
 }
