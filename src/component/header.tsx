@@ -1,72 +1,88 @@
+import { $ } from '@'
+import { Link } from '@tanstack/react-router'
 import React, { useMemo } from 'react'
 
-export interface THeaderProp {
-  icons?: NHeaderProp.icons
-  navs?: NHeaderProp.navs
-}
-
-/* eslint-disable */
-export module NHeaderProp {
-  export type icons = Record<string, THeaderIcons>
-  export type navs = Record<string, THeaderNavs>
-  export type HeaderIcons = THeaderIcons
-  export type HeaderNavs = THeaderNavs
-}
-
-export const Header = ({ icons, navs }: THeaderProp) => {
-  const iconsList = useMemo(() => Object.entries(icons ?? {}), [])
-  const navsList = useMemo(() => Object.entries(navs ?? {}), [])
+/* eslint-disable-next-line */
+export function Header({
+  children,
+  list: _list,
+  ...props
+}: React.PropsWithChildren<{ list: Record<string, string> }> &
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
+  const list = useMemo(() => Object.entries(_list), [_list])
   return (
-    <div
-      role="group"
-      aria-label="group items"
-      className="flex items-center justify-between gap-4 md:justify-start"
+    <header
+      {...props}
+      aria-label="navigation bar"
+      className={$.clcs([
+        'flex items-center justify-between gap-4 border border-black p-4',
+        props?.className ?? '',
+      ])}
     >
-      <button aria-label="icon item menu" className="hover:shadow">
-        <img alt="icon-item-menu" src={'https://placehold.co/30x30'} />
-      </button>
-
       <ul
-        aria-label="list items navigation"
-        className="[&_span]: flex gap-4 overflow-x-auto [&>li]:cursor-pointer"
+        aria-label="list label items"
+        className="flex items-center gap-4 overflow-x-auto [&>*]:cursor-pointer"
       >
-        {navsList?.map(([key, { text, action }]) => (
-          <li className="group" key={key} aria-label={'icon item ' + key}>
-            <button onClick={action}>
-              <span className="group-hover:text-shadow">{text}</span>
-            </button>
+        {React.Children?.toArray(children)?.at(0)}
+        {list.map(([label, url]) => (
+          <li className="group" aria-label="label item" key={label}>
+            <Link to={url} className="group capitalize no-underline">
+              {({ isActive }) => (
+                <span
+                  className={$.clcs([
+                    'group-hover:text-shadow',
+                    $.clco({
+                      'text-shadow': isActive,
+                    }),
+                  ])}
+                >
+                  {label}
+                </span>
+              )}
+            </Link>
           </li>
         ))}
       </ul>
 
       <ul
-        aria-label="list item icons"
-        className="hidden gap-4 md:ms-auto md:flex [&>li]:hover:cursor-pointer"
+        className="flex gap-4 overflow-x-auto [&>*]:cursor-pointer"
+        aria-label="list icons items"
       >
-        {iconsList?.map(([key, { Comp, action }]) => (
-          <li
-            className="flex items-center"
-            aria-label={'icon item ' + key}
-            key={key}
-          >
-            <button className="rounded-full hover:shadow" onClick={action}>
-              <Comp />
-            </button>
-          </li>
-        ))}
+        {React.Children?.toArray(children)?.slice(1)}
       </ul>
-    </div>
+    </header>
   )
 }
 
+/* eslint-disable-next-line */
+Header.Icon = function ({
+  children,
+  onClick,
+  ...props
+}: React.PropsWithChildren<{
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+}> &
+  React.DetailedHTMLProps<
+    React.LiHTMLAttributes<HTMLLIElement>,
+    HTMLLIElement
+  >) {
+  return (
+    <li
+      {...props}
+      className={$.clcs([
+        'inline-grid place-content-center place-items-center hover:bg-black',
+        props.className ?? '',
+      ])}
+      aria-label={'icon item'}
+    >
+      <button {...{ onClick }} className={$.clcs(['rounded-inherit'])}>
+        {children}
+      </button>
+    </li>
+  )
+}
+
+/* eslint-disable-next-line */
+Header.Button = Header.Icon
+
 export default Header
-
-interface THeaderIcons {
-  Comp: () => JSX.Element
-  action?: React.MouseEventHandler<HTMLElement>
-}
-
-interface THeaderNavs {
-  text: string
-  action?: React.MouseEventHandler<HTMLElement>
-}
