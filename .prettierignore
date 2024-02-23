@@ -3,6 +3,7 @@ build
 coverage
 husky
 **/.gitkeep
+src/assets/*.svg
 
 
 # Ignore all HTML files:
