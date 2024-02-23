@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button, TButton } from './button'
+import { Button } from './button'
+import type { TButton } from './button'
 import Heart from '@/assets/heart.svg?react'
 
 function Basic({ label, ...props }: TButton & { label: string }) {
