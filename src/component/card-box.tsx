@@ -1,6 +1,6 @@
 import { $ } from '@/helper'
 import lcss from './card-box.module.css'
-import React, { createContext, useContext, useMemo } from 'react'
+import { Children, createContext, useContext, useMemo } from 'react'
 import { borderRadius } from 'tailwindcss/defaultTheme'
 
 /* eslint-disable-next-line */
@@ -11,7 +11,7 @@ export interface TCardBoxProp {
 }
 
 const _favorite = createContext<
-  { value: boolean; position: 'right' | 'left' } | undefined
+  { value: boolean; position: 'start' | 'end' } | undefined
 >(undefined)
 
 /* eslint-disable-next-line */
@@ -27,7 +27,7 @@ export const CardBox = ({
     HTMLDetailsElement
   >) => {
   const style = useMemo(() => {
-    const child = React.Children.count(children)
+    const child = Children.count(children)
     return { gridTemplateRows: `repeat(${child - 1}, minmax(0, 1fr))` }
   }, [children])
 
@@ -63,8 +63,9 @@ CardBox.Img = function ({
   React.ImgHTMLAttributes<HTMLImageElement>,
   HTMLImageElement
 > & { size?: keyof typeof borderRadius }) {
+  /* eslint-disable-next-line */
   const favorite = useContext<
-    { value: boolean; position: 'right' | 'left' } | undefined | undefined
+    { value: boolean; position: 'start' | 'end' } | undefined | undefined
   >(_favorite)
   return (
     <div

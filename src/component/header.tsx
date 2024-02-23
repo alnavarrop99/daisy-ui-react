@@ -1,6 +1,6 @@
 import { $ } from '@/helper'
 import { Link } from '@tanstack/react-router'
-import React, { useMemo } from 'react'
+import { useMemo, Children } from 'react'
 
 interface THeaderProps {
   list: Record<string, string>
@@ -27,9 +27,7 @@ export function Header({
         aria-label="list label"
         className="flex items-center gap-4 overflow-x-auto [&>*]:cursor-pointer"
       >
-        <li aria-label="labelitem">
-          {React.Children?.toArray(children)?.at(0)}
-        </li>
+        <li aria-label="labelitem">{Children?.toArray(children)?.at(0)}</li>
         {list.map(([label, url]) => (
           <li className="group" aria-label="labelitem" key={label}>
             <Link to={url} className="capitalize no-underline">
@@ -54,7 +52,7 @@ export function Header({
         className="flex gap-4 overflow-x-auto [&>*]:cursor-pointer"
         aria-label="list icons"
       >
-        {React.Children?.toArray(children)
+        {Children?.toArray(children)
           ?.slice(1)
           .map((item, i) => (
             <li aria-label="item icon" key={i}>

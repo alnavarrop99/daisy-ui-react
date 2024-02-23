@@ -1,6 +1,6 @@
 import { $ } from '@/helper'
 import { Link } from '@tanstack/react-router'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 /* eslint-disable-next-line */
 export interface TSideBarProp {

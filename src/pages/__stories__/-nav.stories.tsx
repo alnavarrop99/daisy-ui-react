@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Layout as _Layout } from '@/pages/_layout'
 import { Home } from '@/pages/_layout/index'

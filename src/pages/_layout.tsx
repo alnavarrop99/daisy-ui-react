@@ -4,7 +4,6 @@ import SideBar from '@/component/sidebar'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 import { Header, NHeaderProp } from '@/component/header'
 import Footer from '@/component/footer'
-import React from 'react'
 
 export const Route = createFileRoute('/_layout')({
   component: Layout,
