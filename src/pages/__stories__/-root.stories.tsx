@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Layout as _Layout } from '@pages/_layout'
-import { _404 as NotFound } from '@pages/__404'
-import { Login } from '@pages/login'
-import { $ } from '@'
+import { Layout as _Layout } from '@/pages/_layout'
+import { _404 as NotFound } from '@/pages/__404'
+import { Login } from '@/pages/login'
+import { $ } from '@/helper'
 import { Root } from '..'
 
 const meta: Meta = {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Header } from '@component/header'
-import { $ } from '@'
+import { Header } from './header'
+import { $ } from '@/helper'
 
 interface TNavigationProps {
   list: Record<string, string>

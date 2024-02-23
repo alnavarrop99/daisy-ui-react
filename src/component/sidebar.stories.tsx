@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { SideBar, TSideBarProp } from '@component/sidebar'
-import { $ } from '@'
+import { SideBar, TSideBarProp } from './sidebar'
+import { $ } from '@/helper'
 
 function Navigation({ list }: TSideBarProp) {
   return <SideBar {...{ list }}></SideBar>

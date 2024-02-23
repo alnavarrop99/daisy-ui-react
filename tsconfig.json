@@ -23,11 +23,7 @@
     "types": ["vitest/globals"],
 
     "paths": {
-      "@component/*": ["./src/component/*"],
-      "@layout/*": ["./src/layout/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@": ["./src/helper.tsx"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src", "./test.setup.ts"],

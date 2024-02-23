@@ -1,4 +1,4 @@
-import { $ } from '@'
+import { $ } from '@/helper'
 import { Link } from '@tanstack/react-router'
 import React, { useMemo } from 'react'
 

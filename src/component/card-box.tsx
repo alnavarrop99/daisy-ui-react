@@ -1,4 +1,4 @@
-import { $ } from '@'
+import { $ } from '@/helper'
 import lcss from './card-box.module.css'
 import React, { createContext, useContext, useMemo } from 'react'
 import { borderRadius } from 'tailwindcss/defaultTheme'
@@ -35,7 +35,7 @@ export const CardBox = ({
     <_favorite.Provider
       value={
         typeof favorite === 'boolean'
-          ? { value: favorite, position: 'left' }
+          ? { value: favorite, position: 'start' }
           : favorite
       }
     >
@@ -44,7 +44,7 @@ export const CardBox = ({
         style={style}
         aria-label="card container"
         className={$.clcs([
-          'inline-grid grid-flow-col gap-x-4 rounded-lg border p-4 shadow-lg',
+          'card inline-grid grid-flow-col gap-x-4 rounded-lg border p-4 shadow-lg',
           lcss?.['grid-fx2'],
           props?.className ?? '',
         ])}
@@ -68,9 +68,9 @@ CardBox.Img = function ({
   >(_favorite)
   return (
     <div
-      aria-label="card image"
+      aria-label="avatar card image"
       className={$.clcs([
-        'h-initial  row-span-full',
+        'h-initial avatar  row-span-full',
         $.clco({
           'rounded-lg': size === 'lg' || typeof size === 'undefined',
           'rounded-sm': size === 'sm',
@@ -83,7 +83,7 @@ CardBox.Img = function ({
         }),
       ])}
     >
-      {favorite && favorite.value && favorite.position === 'left' && (
+      {favorite && favorite.value && favorite.position === 'start' && (
         <span
           className={$.clcs([
             'absolute inline-block h-4 w-4 origin-bottom-right -translate-x-1/3 -translate-y-1/3 rounded-full bg-green-500',
@@ -93,7 +93,7 @@ CardBox.Img = function ({
       <img
         {...props}
         className={$.clcs([
-          'rounded-inherit inline-block min-h-full',
+          'rounded-inherit online inline-block min-h-full',
           props?.className ?? '',
         ])}
         alt="card-img"
@@ -118,7 +118,11 @@ CardBox.Label = function ({
   HTMLSpanElement
 >) {
   return (
-    <span {...props} aria-label="card title">
+    <span
+      {...props}
+      aria-label="card title"
+      className={$.clcs(['card-title', props?.className ?? ''])}
+    >
       {children}
     </span>
   )
@@ -185,7 +189,7 @@ CardBox.Button = function ({
     <button
       {...props}
       className={$.clcs([
-        "border hover:after:content-['_>>']",
+        "btn border hover:after:content-['_>>']",
         lcss?.['animation'],
         props?.className ?? '',
       ])}
