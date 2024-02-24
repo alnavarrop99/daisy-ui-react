@@ -1,9 +1,9 @@
 import { $ } from '@/helper'
 import lcss from './_layout.module.css'
-import SideBar from '@/component/sidebar'
+import SideBar from '@/layout/sidebar'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
-import { Header, NHeaderProp } from '@/component/header'
-import Footer from '@/component/footer'
+import { Header } from '@/layout/header'
+import Footer from '@/layout/footer'
 
 export const Route = createFileRoute('/_layout')({
   component: Layout,
@@ -43,7 +43,7 @@ export const SideBarList = {
   user: 'user',
 }
 
-export const icons: NHeaderProp.icons = {
+export const icons = {
   search: {
     Comp: () => (
       <img
@@ -82,10 +82,9 @@ export const icons: NHeaderProp.icons = {
   },
 } as const
 
-export const navs: { [k in keyof typeof SideBarList]: NHeaderProp.HeaderNavs } =
-  {
-    user: { text: 'user' },
-    client: { text: 'client' },
-    credit: { text: 'credit' },
-    home: { text: 'home' },
-  } as const
+export const navs: { [k in keyof typeof SideBarList] } = {
+  user: { text: 'user' },
+  client: { text: 'client' },
+  credit: { text: 'credit' },
+  home: { text: 'home' },
+} as const
