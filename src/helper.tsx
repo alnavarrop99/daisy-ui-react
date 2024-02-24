@@ -46,9 +46,9 @@ const clco = (styles: Record<string, boolean>): string => {
 }
 
 const clcs = (
-  styles: (string | CSSModuleClasses | Record<string, boolean>)[]
+  styles: (string | CSSModuleClasses | undefined | Record<string, boolean>)[]
 ): string => {
-  return styles.join(' ')
+  return styles.filter((item) => !!item).join(' ')
 }
 
 // not work for talwindcss proccess
