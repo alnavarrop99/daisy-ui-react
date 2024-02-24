@@ -1,35 +1,34 @@
-import { $ } from "@/helper";
-import { createContext, useContext } from "react";
+import { $ } from '@/helper'
+import { createContext, useContext } from 'react'
 
 /* eslint-disable-next-line */
 export interface TButton {
-  link?: boolean;
-  status?: "info" | "success" | "warning" | "error";
-  outline?: boolean;
-  size?: "lg" | "sm" | "xs" | "md";
-  glass?: boolean;
-  area?: "circle" | "square";
-  animation?: boolean;
-  loading?: boolean;
+  link?: boolean
+  status?: 'info' | 'success' | 'warning' | 'error'
+  outline?: boolean
+  size?: 'lg' | 'sm' | 'xs' | 'md'
+  glass?: boolean
+  area?: 'circle' | 'square'
+  animation?: boolean
+  loading?: boolean
 }
 
-const _loading = createContext<boolean | undefined>(false);
+const _loading = createContext<boolean | undefined>(false)
 
 /* eslint-disable-next-line */
 export function Button({
   children,
-  link,
+  link = false,
   status,
-  outline,
-  size,
-  glass,
+  outline = false,
+  size = 'md',
+  glass = false,
   area,
-  animation,
-  loading,
+  animation = true,
+  loading = false,
   ...props
-}:
-  & React.PropsWithChildren<TButton>
-  & React.DetailedHTMLProps<
+}: React.PropsWithChildren<TButton> &
+  React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   >) {
@@ -38,37 +37,37 @@ export function Button({
       <button
         {...props}
         className={$.clcs([
-          "btn",
+          'btn',
           $.clco({
-            "btn-link": typeof link !== "undefined" && link,
-            "btn-info": status === "info",
-            "btn-success": status === "success",
-            "btn-error": status === "error",
-            "btn-warning": status === "warning",
-            "btn-outline": typeof outline !== "undefined" && outline,
-            "btn-lg": size === "lg",
-            "btn-sm": size === "sm",
-            "btn-xs": size === "xs",
-            "glass": typeof glass !== "undefined" && glass,
-            "btn-circle": area === "circle",
-            "btn-square": area === "square",
-            "no-animation": typeof animation !== "undefined" && !animation,
+            'btn-link': link,
+            'btn-info': status === 'info',
+            'btn-success': status === 'success',
+            'btn-error': status === 'error',
+            'btn-warning': status === 'warning',
+            'btn-outline': outline,
+            'btn-lg': size === 'lg',
+            'btn-sm': size === 'sm',
+            'btn-xs': size === 'xs',
+            glass: glass,
+            'btn-circle': area === 'circle',
+            'btn-square': area === 'square',
+            'no-animation': !animation,
           }),
-          props.className ?? "",
+          props.className ?? '',
         ])}
       >
         {children}
       </button>
     </_loading.Provider>
-  );
+  )
 }
 
 /* eslint-disable-next-line */
 Button.Loading = function () {
   /* eslint-disable-next-line */
-  const loading = useContext(_loading);
-  if (typeof loading !== "undefined" && !loading) return;
-  return <span className="loading loading-spinner"></span>;
-};
+  const loading = useContext(_loading)
+  if (typeof loading !== 'undefined' && !loading) return
+  return <span className="loading loading-spinner"></span>
+}
 
-export default Button;
+export default Button
