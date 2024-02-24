@@ -33,8 +33,9 @@
       ],
       "plugins": ["react"],
       "rules": {
-        "react/display-name": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/display-name": "warn",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "warn"
       }
     },
     {
