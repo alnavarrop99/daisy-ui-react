@@ -1,7 +1,7 @@
 {
   "**/*": ["prettier --write"],
   "src/**/*.ts": ["eslint --fix"],
-  "src/**/*.(test|spec).ts": ["vitest related --run"],
-  "src/**/*.tsx": ["eslint --fix"],
+  "src/**/*.(test|spec).ts": ["vitest related --run", "eslint"],
+  "src/**/*.tsx": ["eslint"],
   "src/**/*.css": ["stylelint"]
 }

@@ -11,7 +11,7 @@ function Fav({ children }: React.PropsWithChildren) {
   return (
     <span className="flex items-center gap-2">
       {children}
-      <Heart className="size-8 hover:fill-red-500 hover:stroke-white" />
+      <Heart className="h-8 w-8 hover:fill-red-500 hover:stroke-white" />
     </span>
   )
 }
