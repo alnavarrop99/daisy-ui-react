@@ -66,6 +66,16 @@ const RouteStorie = ({ Comp }: { Comp: () => JSX.Element }) => <Comp />
 const createRouteStory = ({ Comp }: { Comp: () => JSX.Element }) =>
   customRenderStorie(() => <RouteStorie {...{ Comp }} />)
 
+/* eslint-disable-next-line */
+const isJSX = (obj: any): obj is JSX.Element => {
+  return typeof obj.type === 'function'
+}
+
+/* eslint-disable-next-line */
+const isObj = (obj: any): obj is { [k: string]: any } => {
+  return typeof obj === 'object' && !isJSX(obj)
+}
+
 export const $ = {
   createRouteStory,
   customRenderStorie,
@@ -73,4 +83,6 @@ export const $ = {
   clcs,
   clco,
   clci,
+  isJSX,
+  isObj,
 }
