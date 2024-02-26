@@ -5,8 +5,8 @@ export interface TAvatar {
   size?: 'xs' | 'sm' | 'md' | 'lg'
   mask?: 'squircle' | 'hexagon' | 'circle' | 'rounded'
   ring?: boolean
-  online: boolean
-  offline: boolean
+  online?: boolean
+  offline?: boolean
 }
 
 /* eslint-disable-next-line */
@@ -15,8 +15,8 @@ export function Avatar({
   size = 'lg',
   mask = 'rounded',
   ring = false,
-  online,
-  offline,
+  online = false,
+  offline = false,
   src,
   ...props
 }: TAvatar &
