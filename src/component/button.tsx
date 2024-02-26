@@ -1,5 +1,5 @@
 import { $ } from '@/helper'
-import { createContext, useContext } from 'react'
+import React, { createContext, useContext } from 'react'
 
 /* eslint-disable-next-line */
 export interface TButton {
@@ -11,6 +11,7 @@ export interface TButton {
   area?: 'circle' | 'square'
   animation?: boolean
   loading?: boolean
+  active?: boolean
 }
 
 const _loading = createContext<boolean | undefined>(false)
@@ -26,6 +27,7 @@ export function Button({
   area,
   animation = true,
   loading = false,
+  active = false,
   ...props
 }: React.PropsWithChildren<TButton> &
   React.DetailedHTMLProps<
@@ -52,6 +54,7 @@ export function Button({
             'btn-circle': area === 'circle',
             'btn-square': area === 'square',
             'no-animation': !animation,
+            active: active,
           }),
           props.className ?? '',
         ])}
@@ -63,11 +66,64 @@ export function Button({
 }
 
 /* eslint-disable-next-line */
-Button.Loading = function () {
+export interface TButtonLoading {}
+
+/* eslint-disable-next-line */
+Button.Loading = function ({}: TButtonLoading) {
   /* eslint-disable-next-line */
   const loading = useContext(_loading)
   if (typeof loading !== 'undefined' && !loading) return
   return <span className="loading loading-spinner"></span>
 }
+
+/* eslint-disable-next-line */
+interface TButtonGroupJoin {
+  type?: 'join'
+}
+
+/* eslint-disable-next-line */
+interface TButtonGroupNav {
+  type?: 'nav'
+  size?: 'lg' | 'sm' | 'xs' | 'md'
+}
+
+/* eslint-disable-next-line */
+export type TButtonGroup = TButtonGroupNav | TButtonGroupJoin
+
+/* eslint-disable-next-line */
+Button.Group = function ({
+  children,
+  type = 'join',
+  ...props
+}: React.PropsWithChildren<TButtonGroup> &
+  React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  >) {
+  return (
+    <div
+      {...props}
+      className={$.clcs([
+        $.clco({
+          'btm-nav': type === 'nav',
+          join: type === 'join',
+          'btm-nav-lg':
+            type === 'nav' && (props as TButtonGroupNav)?.size === 'lg',
+          'btm-nav-sm':
+            type === 'nav' && (props as TButtonGroupNav)?.size === 'sm',
+          'btm-nav-xs':
+            type === 'nav' && (props as TButtonGroupNav)?.size === 'xs',
+          'btm-nav-md':
+            type === 'nav' && (props as TButtonGroupNav)?.size === 'md',
+        }),
+        props?.className,
+      ])}
+    >
+      {children}
+    </div>
+  )
+}
+
+Button.Item = Button
 
 export default Button
