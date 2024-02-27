@@ -1,27 +1,38 @@
 import { $ } from '@/helper'
-import React, { Children, createContext, useContext } from 'react'
+import React, { Children, createContext, useContext, useMemo } from 'react'
+
+/* eslint-disable-next-line */
+interface TItems {
+  title?: TMenuTitle & { value: string | JSX.Element }
+  item?: Record<string, TMenuItem & { value: string | JSX.Element }>
+  submenu?: TMenuGroup & TItems
+}
 
 /* eslint-disable-next-line */
 export interface TMenu {
+  items?: TItems
   direction?: 'horizontal' | 'vertical'
   size?: 'lg' | 'sm' | 'xs' | 'md'
 }
+
+const _group = createContext<boolean>(false)
+const _submenuProps = createContext<TMenuGroup | undefined>(undefined)
 
 /* eslint-disable-next-line */
 export function Menu({
   children,
   direction,
   size,
+  items,
   ...props
 }: React.PropsWithChildren<TMenu> &
   React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLUListElement>,
     HTMLUListElement
   >) {
-  return (
-    <ul
-      {...props}
-      className={$.clcs([
+  const _className = useMemo(
+    () =>
+      $.clcs([
         'menu inline-flex',
         $.clco({
           'menu-horizontal': direction === 'horizontal',
@@ -32,8 +43,78 @@ export function Menu({
           'menu-lg': size === 'lg',
         }),
         props?.className,
-      ])}
-    >
+      ]),
+    [direction, size]
+  )
+
+  const { item: _item, title, submenu } = items ?? {}
+  const item = useMemo(() => Object.entries(_item ?? {}), [_item])
+
+  const group = useContext(_group)
+  const submenuProps = useContext(_submenuProps)
+
+  if (!children && !items) return
+
+  if (!!items && group) {
+    return (
+      <Menu.Group {...submenuProps}>
+        {!!title &&
+          [title].map(({ value, ...props }) => (
+            <Menu.Title {...props} key={'title'}>
+              {' '}
+              {value}{' '}
+            </Menu.Title>
+          ))}
+        {!!item?.length &&
+          item?.map(([key, { value, ...props }]) => (
+            <Menu.Item key={key} {...props}>
+              {' '}
+              {value}{' '}
+            </Menu.Item>
+          ))}
+        {!!submenu &&
+          [submenu].map(({ title, item, submenu, ...props }) => (
+            <Menu.Group {...props} key={'submenu'}>
+              <Menu items={{ title, item, submenu }}></Menu>
+            </Menu.Group>
+          ))}
+      </Menu.Group>
+    )
+  }
+
+  if (!!items && !group) {
+    return (
+      <_group.Provider value={true}>
+        <_submenuProps.Provider
+          value={{ open: submenu?.open, collapsible: submenu?.collapsible }}
+        >
+          <Menu {...(props && { size, direction })}>
+            {!!title &&
+              [title].map(({ value, ...props }) => (
+                <Menu.Title {...props} key={'title'}>
+                  {' '}
+                  {value}{' '}
+                </Menu.Title>
+              ))}
+            {!!item?.length &&
+              item?.map(([key, { value, ...props }]) => (
+                <Menu.Item key={key} {...props}>
+                  {' '}
+                  {value}{' '}
+                </Menu.Item>
+              ))}
+            {!!submenu &&
+              [submenu].map(({ title, item, submenu }, i) => (
+                <Menu key={i} items={{ title, item, submenu }} />
+              ))}
+          </Menu>
+        </_submenuProps.Provider>
+      </_group.Provider>
+    )
+  }
+
+  return (
+    <ul {...props} className={_className}>
       {children}
     </ul>
   )

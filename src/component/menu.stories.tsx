@@ -5,7 +5,7 @@ import File from '@/assets/file.svg?react'
 import Folder from '@/assets/folder.svg?react'
 
 function Basic({ ...props }: TMenu) {
-  return <Menu {...props}></Menu>
+  return <Menu {...props} />
 }
 
 function Title({
@@ -149,6 +149,24 @@ export default meta
 const args: TMenu = {
   direction: 'vertical',
   size: 'md',
+  items: {
+    title: { value: 'Title' },
+    item: {
+      item1: { value: 'Item 1' },
+      item2: { value: 'Item 2' },
+      item3: { value: 'Item 3' },
+    },
+    submenu: {
+      collapsible: true,
+      open: true,
+      title: { value: 'Title', sub: true },
+      item: {
+        item1: { value: 'Item 1' },
+        item2: { value: 'Item 2' },
+        item3: { value: 'Item 3' },
+      },
+    },
+  },
 }
 
 export const _Basic: StoryObj<TMenu> = {
@@ -160,7 +178,6 @@ export const _Basic: StoryObj<TMenu> = {
 export const _Title: StoryObj<TMenu & TMenuTitle & { label: string }> = {
   name: 'Title',
   args: {
-    ...args,
     label: 'Title',
     sub: false,
   },
@@ -170,7 +187,6 @@ export const _Title: StoryObj<TMenu & TMenuTitle & { label: string }> = {
 export const _Group: StoryObj<TMenu & TMenuTitle & { label: string }> = {
   name: 'Group',
   args: {
-    ...args,
     sub: false,
     label: 'Title',
   },
@@ -180,9 +196,8 @@ export const _Group: StoryObj<TMenu & TMenuTitle & { label: string }> = {
 export const _Submenu: StoryObj<TMenu & TMenuGroup> = {
   name: 'Submenu',
   args: {
-    ...args,
     open: true,
-    collapsible: false,
+    collapsible: true,
   },
   render: Submenu,
 }
@@ -190,7 +205,6 @@ export const _Submenu: StoryObj<TMenu & TMenuGroup> = {
 export const _Treemenu: StoryObj<TMenu & TMenuGroup> = {
   name: 'Tree Menu',
   args: {
-    ...args,
     collapsible: true,
     open: true,
   },
